@@ -28,7 +28,7 @@ const getContactById = async (contactId) => {
 const removeContact = async (contactId) => {
   const contacts = await listContacts();
   const index = contacts.findIndex((item) => item.id === contactId);
-  if (!!index) return null;
+  if (index === -1) return null;
   const deletedContact = contacts.splice(index, 1);
   try {
     await fs.writeFile(contactsPath, JSON.stringify(contacts));
